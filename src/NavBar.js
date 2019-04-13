@@ -34,7 +34,6 @@ class NavBar extends Component {
 <button
   className="btn btn-primary"
   onClick={this.props.signOut.bind(this)}
-  align="right"
 >Sign out
 </button>
 </nav>
