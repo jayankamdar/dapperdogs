@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { UserSession } from 'blockstack'
 import NavBar from './NavBar'
 import Landing from './Landing'
-import { appConfig } from './constants'
+import { appConfig} from './constants'
 import './SignedIn.css'
 
 
@@ -20,6 +20,7 @@ class SignedIn extends Component {
 
 	this.userSession = new UserSession({ appConfig })
     this.loadMe = this.loadMe.bind(this)
+    this.saveMe = this.saveMe.bind(this)
     this.signOut = this.signOut.bind(this)
   }
 
@@ -30,6 +31,14 @@ class SignedIn extends Component {
   loadMe() {
     const options = { decrypt: false }
 
+  }
+
+  saveMe(me) {
+    this.setState({me, savingMe: true})
+    const options = { encrypt: false }
+    .finally(() => {
+      this.setState({savingMe: false})
+    })
   }
 
   signOut(e) {
