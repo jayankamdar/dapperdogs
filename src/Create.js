@@ -8,34 +8,35 @@ class Create extends Component {
   constructor() {
 	  super()
     this.state = {
-	  id: null,
-      name: null,
-      age: null,
-	  breed: null,
-	  weight: null,
-	  photo: null,
-	  friends: null,
-	  isSubmitted: false
+	  id: "",
+      dogName: "",
+      dogAge: "",
+	  dogBreed: "",
+	  dogWeight: "",
+	  dogPhoto: "",
+	  dogFriends: "",
+	  isSubmitted: ""
     }
 	this.handleChange = this.handleChange.bind(this)
 	this.handleClick = this.handleClick.bind(this)
   }
   
   handleChange(e) {
-	  this.setState({[e.target.id] : e.target.value})
+	  this.setState({dogName : e.target.value})
   }
   
   handleClick(e) {
+	  const username = this.props.username
 	  this.state.id = this.props.username
 	  
 	  let dogInfo = {
 		  id: this.state.id,
-		  name: this.state.name,
-		  age: this.state.age,
-		  breed: this.state.breed,
-		  weight: this.state.weight,
-		  photo: this.state.photo,
-		  friends: this.state.friends
+		  name: this.state.dogName,
+		  age: this.state.dogAge,
+		  breed: this.state.dogBreed,
+		  weight: this.state.dogWeight,
+		  photo: this.state.dogPhoto,
+		  friends: this.state.dogFriends
 	  }
 	  
 	  var dogList = {}
@@ -46,14 +47,14 @@ class Create extends Component {
 		if (dogL != null) { 
 		  dogList = dogL
 		}
-		dogList["${this.state.id}"] = this.state.name
+		dogList[`${username}`] = this.state.name
 	  })
 	  
 	  const options2 = { encrypt: false }
 	  putFile('dogs.json', JSON.stringify(dogList), options2).then(() => {})
 	  
 	  const options3 = { encrypt: false }
-	  putFile('${this.state.id}.json', JSON.stringify(dogInfo), options3).then(() => {})
+	  putFile(`${username}.json`, JSON.stringify(dogInfo), options3).then(() => {})
   }  
 
   render() {

@@ -12,31 +12,44 @@ class App extends Component {
   constructor(props) {
     super(props)
 	this.userSession = new UserSession()
-    let isSignedIn = this.checkSignedInStatus();
+  //   let isSignedIn = this.checkSignedInStatus();
 
-    this.handleSignIn = this.handleSignIn.bind(this)
-    this.handleSignOut = this.handleSignOut.bind(this)
+  //   this.handleSignIn = this.handleSignIn.bind(this)
+  //   this.handleSignOut = this.handleSignOut.bind(this)
   }
 
-  checkSignedInStatus() {
-    if (blockstack.isUserSignedIn()) {
-      return true;
-    } else if (blockstack.isSignInPending()) {
-      blockstack.handlePendingSignIn().then(function(userData) {
-        window.location = window.location.origin
+  // checkSignedInStatus() {
+  //   if (blockstack.isUserSignedIn()) {
+  //     return true;
+  //   } else if (blockstack.isSignInPending()) {
+  //     blockstack.handlePendingSignIn().then(function(userData) {
+  //       window.location = window.location.origin
+  //     })
+  //     return false;
+  //   }
+  // }
+
+  // handleSignIn(event) {
+  //   event.preventDefault();
+  //   blockstack.redirectToSignIn()
+  // }
+
+  // handleSignOut(event) {
+  //   event.preventDefault();
+  //   blockstack.signUserOut(window.location.href)
+  // }
+
+  componentDidMount() {
+    const session = this.userSession
+    if(!session.isUserSignedIn() && session.isSignInPending()) {
+      session.handlePendingSignIn()
+      .then((userData) => {
+        if(!userData.username) {
+          throw new Error('This app requires a username.')
+        }
+        window.location = `/profile`
       })
-      return false;
     }
-  }
-
-  handleSignIn(event) {
-    event.preventDefault();
-    blockstack.redirectToSignIn()
-  }
-
-  handleSignOut(event) {
-    event.preventDefault();
-    blockstack.signUserOut(window.location.href)
   }
 
   render() {
