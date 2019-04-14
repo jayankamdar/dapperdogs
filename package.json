@@ -16,6 +16,7 @@
   "dependencies": {
     "blockstack": "latest",
     "create-react-app": "^2.1.8",
+    "memoize-one": "^5.0.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
