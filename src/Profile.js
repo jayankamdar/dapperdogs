@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
+import { UserSession } from 'blockstack';
+import { appConfig } from './constants';
+
 export default class ProfilePage extends Component {
     constructor(props) {
         super(props)
         this.state ={
             name: ''
         }
+        this.userSession = new UserSession({ appConfig })
     }
 
     componentDidMount(){
