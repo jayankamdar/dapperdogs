@@ -4,24 +4,28 @@ import './Create.css'
 import { getFile, putFile, UserSession } from 'blockstack'
 import { appConfig } from './constants'
 
+var photoURL = "";
+
 class Create extends Component {
 
-  constructor() {
-	  super()
-    this.state = {
-	  id: "",
+	constructor() {
+		super()
+		this.state = {
+			id: "",
       dogName: "",
       dogAge: "",
-	  dogBreed: "",
-	  dogWeight: "",
-	  dogPhoto: "",
-		dogFriends: "",
-		dogMisc: "",
-	  isSubmitted: ""
+			dogBreed: "",
+			dogWeight: "",
+			dogPhotoOrig: null,
+			dogPhoto: "",
+			dogFriends: "",
+			dogMisc: "",
+			isSubmitted: ""
 		}
 		this.userSession = new UserSession({ appConfig })
-	this.handleChange = this.handleChange.bind(this)
-	this.handleClick = this.handleClick.bind(this)
+		this.handleChange = this.handleChange.bind(this)
+		this.handleClick = this.handleClick.bind(this)
+		this.openFile = this.openFile.bind(this)
   }
   
   handleChange(e) {
@@ -33,14 +37,14 @@ class Create extends Component {
 		this.setState({
 			id: username
 		})
-	  
-	  let dogInfo = {
-		  id: this.state.id,
-		  name: this.state.dogName,
-		  age: this.state.dogAge,
-		  breed: this.state.dogBreed,
-		  weight: this.state.dogWeight,
-			photo: this.state.dogPhoto,
+
+		let dogInfo = {
+			id: this.state.id,
+			name: this.state.dogName,
+			age: this.state.dogAge,
+			breed: this.state.dogBreed,
+			weight: this.state.dogWeight,
+		  photo: photoURL,
 			misc: this.state.dogMisc,
 		  friends: this.state.dogFriends
 	  }
@@ -56,37 +60,55 @@ class Create extends Component {
 	  
 	  const options3 = { encrypt: false }
 		putFile(`${username}.json`, JSON.stringify(dogInfo), options3).then(() => {window.location=`/profile/${username}`})
-  }  
-
-  render() {
-    return (
-      <div className="Create profile"> 
-      <h2>Create profile</h2>
-      <p>Enter some information about your dog</p>
-        <h3>Name</h3>
-        <input type="text" name="dogName" value={this.state.dogName} maxlength="100" onChange={this.handleChange}/><br/>
-        <h3>Age</h3>
-        <input type="text" name="dogAge" value={this.state.dogAge} maxlength="100" onChange={this.handleChange}/><br/>
-		<h3>Breed</h3>
-		<input type="text" name="dogBreed" value={this.state.dogBreed} maxlength="100" onChange={this.handleChange}/><br/>
-		<h3>Weight</h3>
-		<input type="text" name="dogWeight" value={this.state.dogWeight} maxlength="100" onChange={this.handleChange}/><br/>
-		<h3>Miscellaneous information</h3>
-		<textarea className="bigText" name="dogMisc" value={this.state.dogMisc} maxlength="100" onChange={this.handleChange}/><br/>
-		<h3>Photo</h3>
-		<input type="file" name="dogPhoto" value="" maxlength="100" /><br/>
+	}  
+	
+	openFile = function(event) {
+		let self = this;
+		var input = event.target;
+	
+		var reader = new FileReader();
 		
-		<button
-		name="submit"
-		className="submitBtn"
-		onClick={
-			this.handleClick
-		}
-		>Submit
-		</button>
-	  </div>
-    );
-  }
+		reader.onload = function(){
+			var dataURL = reader.result;
+			var output = document.getElementById('output');
+			output.src = dataURL;
+			
+			photoURL = dataURL;
+	
+		};
+				
+		reader.readAsDataURL(input.files[0]);
+	};
+
+	render() {
+		return (
+			<div className="Create profile">
+				<h2>Create profile</h2>
+				<p>Enter some information about your dog</p>
+				<h3>Name</h3>
+				<input type="text" name="dogName" value={this.state.dogName} maxlength="100" onChange={this.handleChange} /><br />
+				<h3>Age</h3>
+				<input type="text" name="dogAge" value={this.state.dogAge} maxlength="100" onChange={this.handleChange} /><br />
+				<h3>Breed</h3>
+				<input type="text" name="dogBreed" value={this.state.dogBreed} maxlength="100" onChange={this.handleChange} /><br />
+				<h3>Weight</h3>
+				<input type="text" name="dogWeight" value={this.state.dogWeight} maxlength="100" onChange={this.handleChange} /><br />
+				<h3>Miscellaneous information</h3>
+				<textarea className="bigText" name="dogMisc" value={this.state.dogMisc} maxlength="100" onChange={this.handleChange} /><br />
+				<h3>Photo</h3>
+				<input type="file" accept="image/*" name="dogPhotoOrig" value={this.state.dogPhotoOrig} maxlength="100" onChange={this.openFile}/><br/>
+				<img id='output' height="100px" width="100px"/>
+				<button
+					name="submit"
+					className="submitBtn"
+					onClick={
+						this.handleClick
+					}
+				>Submit
+				</button>
+			</div>
+		);
+	}
 }
 
 export default Create

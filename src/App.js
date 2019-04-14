@@ -11,11 +11,11 @@ import SignedIn from './SignedIn';
 class App extends Component {
   constructor(props) {
     super(props)
-	this.userSession = new UserSession()
-  //   let isSignedIn = this.checkSignedInStatus();
+    this.userSession = new UserSession()
+    //   let isSignedIn = this.checkSignedInStatus();
 
-  //   this.handleSignIn = this.handleSignIn.bind(this)
-  //   this.handleSignOut = this.handleSignOut.bind(this)
+    //   this.handleSignIn = this.handleSignIn.bind(this)
+    //   this.handleSignOut = this.handleSignOut.bind(this)
   }
 
   // checkSignedInStatus() {
@@ -41,25 +41,25 @@ class App extends Component {
 
   componentDidMount() {
     const session = this.userSession
-    if(!session.isUserSignedIn() && session.isSignInPending()) {
+    if (!session.isUserSignedIn() && session.isSignInPending()) {
       session.handlePendingSignIn()
-      .then((userData) => {
-        if(!userData.username) {
-          throw new Error('This app requires a username.')
-        }
-        window.location = `/feed`
-      })
+        .then((userData) => {
+          if (!userData.username) {
+            throw new Error('This app requires a username.')
+          }
+          window.location = `/feed`
+        })
     }
   }
 
   render() {
     return (
       <main role="main">
-          {this.userSession.isUserSignedIn() ?
-            <SignedIn />
+        {this.userSession.isUserSignedIn() ?
+          <SignedIn />
           :
-            <Landing />
-          }
+          <Landing />
+        }
       </main>
     );
   }

@@ -11,15 +11,15 @@ export default class ProfilePage extends Component {
             age: '',
             breed: '',
             weight: '',
-            // photo: '',
+            photo: '',
             misc: '',
             // friends: []
-            bark: "",
-            barks: []
+            // bark: "",
+            // barks: []
         }
         this.userSession = new UserSession({ appConfig })
-        this.handleChange= this.handleChange.bind(this)
-        this.handleBark = this.handleBark.bind(this)
+        // this.handleChange= this.handleChange.bind(this)
+        // this.handleBark = this.handleBark.bind(this)
     }
 
     componentDidMount(){
@@ -34,7 +34,7 @@ export default class ProfilePage extends Component {
                     age: data.age,
                     breed: data.breed,
                     weight: data.weight,
-                    // photo: data.photo,
+                    photo: data.photo,
                     misc: data.misc,
                     // friends: data.friends
                 })
@@ -44,31 +44,34 @@ export default class ProfilePage extends Component {
             }
         })
 
-        getFile('barks.json', options)
-        .then(content => {
-            if (content){
-                this.setState({
-                    barks: JSON.parse(content).filter(item => item.id === username)
-                })
-            }
-        })
+        // getFile('barks.json', options)
+        // .then(content => {
+        //     if (content){
+        //         this.setState({
+        //             barks: JSON.parse(content).filter(item => item.id === username)
+        //         })
+        //     }
+        // })
     }
     
-    handleChange(e){
-        this.setState({
-            bark: e.target.value
-        })
-    }
+    // handleChange(e){
+    //     this.setState({
+    //         bark: e.target.value
+    //     })
+    // }
 
-    handleBark(e){        
-        e.preventDefault
-        var barks = [...this.state.barks, {id: this.userSession.loadUserData().username, bark: this.state.bark, date:new Date()}]
-        alert(barks.length)
-        const options = { encrypt: false }
-	    putFile('barks.json', JSON.stringify(barks), options).then(() => {})
-    }
+    // handleBark(e){        
+    //     e.preventDefault
+    //     var barks = [...this.state.barks, {id: this.userSession.loadUserData().username, bark: this.state.bark, date:new Date()}]
+    //     alert(barks.length)
+    //     const options = { encrypt: false }
+	//     putFile('barks.json', JSON.stringify(barks), options).then(() => {})
+    // }
 
     render(){
+        var dogPhoto = new Image();
+		dogPhoto.src = this.state.photo;
+
         return (
             <React.Fragment>
                 <h1>Name: {this.state.name}</h1>
@@ -76,11 +79,12 @@ export default class ProfilePage extends Component {
                 <h2>Breed: {this.state.breed}</h2>
                 <h2>Weight: {this.state.weight}</h2>
                 <h2>Miscellaneous information: {this.state.misc}</h2>
+                <img id="dogpic" src={dogPhoto.src} height="200px" width="200px" />
                 <button onClick={() => window.location=`/${this.props.match.params.username}/edit`}>Edit profile</button>
-                <form onSubmit={this.handleBark}>
+                {/* <form onSubmit={this.handleBark}>
                     <input type="text" name="bark" value={this.state.status} maxlength="100" onChange={this.handleChange}/><br/>
                     <button type="submit">Post bark</button>
-                </form>
+                </form> */}
                 {/* {
                     this.state.barks.reverse().map(bark => 
                         <div className="barK">
@@ -88,7 +92,7 @@ export default class ProfilePage extends Component {
                             <p>{bark.bark}</p>
                         </div>)
                 } */}
-                <h1>{this.state.barks.length}</h1>
+                {/* <h1>{this.state.barks.length}</h1> */}
             </React.Fragment>
         )
     }
