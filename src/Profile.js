@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { UserSession } from 'blockstack';
 import { appConfig } from './constants';
-
+import { isSignInPending, loadUserData, Person, getFile, putFile, lookupProfile } from 'blockstack'
 export default class ProfilePage extends Component {
     constructor(props) {
         super(props)
@@ -12,8 +12,9 @@ export default class ProfilePage extends Component {
     }
 
     componentDidMount(){
+		const username = this.props.username
         const options = { decrypt: false }
-        this.userSession.getFile(this.userSession.loadUserData().username + ".json", options)
+        getFile(`${username}.json`, options)
         .then((content) => {
             if(content) {
                 const data = JSON.parse(content)
@@ -29,7 +30,7 @@ export default class ProfilePage extends Component {
         return (
             <React.Fragment>
                 <h1>Profile Page</h1>
-                <h2>{this.state.name}</h2>
+                <h2>Name: {JSON.stringify(this.state.name)}</h2>
             </React.Fragment>
         )
     }
