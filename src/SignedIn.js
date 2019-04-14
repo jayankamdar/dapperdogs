@@ -7,7 +7,6 @@ import './SignedIn.css'
 import ProfilePage from './Profile'
 import Create from './Create'
 import Edit from './Edit'
-import Search from './Search'
 
 class SignedIn extends Component {
 
@@ -41,7 +40,6 @@ class SignedIn extends Component {
           path='/create'
           component={Create}
           />
-          <Route path='/search' component={Search}/>
           <Route path="/:username/edit" component={Edit}/>
         </Switch>
       </div>
