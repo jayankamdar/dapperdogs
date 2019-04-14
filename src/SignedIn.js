@@ -3,10 +3,10 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { UserSession, Profile } from 'blockstack'
 import NavBar from './NavBar'
 import Landing from './Landing'
-import CreateProfile from './CreateProfile'
 import { appConfig} from './constants'
 import './SignedIn.css'
 import ProfilePage from './Profile'
+import CreatePage from './Create'
 
 
 class SignedIn extends Component {
@@ -62,13 +62,6 @@ class SignedIn extends Component {
       }
     }
 
-    if(window.location.pathname === '/') {
-      return (
-        <Redirect to={`/kingdom/${username}`} />
-      )
-    }
-
-
     return (
       <div className="SignedIn">
       <NavBar username={username} signOut={this.signOut}/>
@@ -88,6 +81,10 @@ class SignedIn extends Component {
                 path='/profile'
                 component={ProfilePage}
               />
+			  <Route
+				path='/create'
+				component={CreatePage}
+			  />
       </Switch>
       </div>
     );
