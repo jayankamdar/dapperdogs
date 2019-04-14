@@ -53,6 +53,7 @@ export default class ProfilePage extends Component {
                 <h2>Weight: {this.state.weight}</h2>
                 <h2>Miscellaneous information: {this.state.misc}</h2>
                 <img id="dogpic" src={dogPhoto.src} alt="Avatar" height="200px" width="200px" />
+                <br></br>
                 <button onClick={() => window.location=`/${this.props.match.params.username}/edit`}>Edit profile</button>
             </React.Fragment>
         )
