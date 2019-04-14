@@ -65,7 +65,7 @@ class Create extends Component {
 
   render() {
     return (
-      <div className="Create profile">
+      <div className="Create profile"> 
       <h2>Create profile</h2>
       <p>Enter some information about your dog</p>
         <h3>Name</h3>
