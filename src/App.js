@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 import './App.css';
 import { UserSession } from 'blockstack'
-import UserInfo from './UserInfo';
+// import UserInfo from './UserInfo';
 import Landing from './Landing';
 import SignedIn from './SignedIn';
 
-const blockstack = require('blockstack');
+// const blockstack = require('blockstack');
 
 class App extends Component {
   constructor(props) {

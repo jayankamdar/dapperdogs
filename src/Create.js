@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import './Create.css'
-import { getFile, putFile } from 'blockstack'
+import { getFile, putFile, UserSession } from 'blockstack'
+import { appConfig } from './constants'
 
 class Create extends Component {
 
@@ -17,7 +18,8 @@ class Create extends Component {
 		dogFriends: "",
 		dogMisc: "",
 	  isSubmitted: ""
-    }
+		}
+		this.userSession = new UserSession({ appConfig })
 	this.handleChange = this.handleChange.bind(this)
 	this.handleClick = this.handleClick.bind(this)
   }
@@ -27,8 +29,10 @@ class Create extends Component {
   }
   
   handleClick(e) {
-	  const username = this.props.username
-	  this.state.id = this.props.username
+		const username = this.userSession.loadUserData.username
+		this.setState({
+			id: username
+		})
 	  
 	  let dogInfo = {
 		  id: this.state.id,
