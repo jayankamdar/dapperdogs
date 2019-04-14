@@ -3,10 +3,12 @@ import './App.css';
 import { UserSession } from 'blockstack'
 import Landing from './Landing';
 import SignedIn from './SignedIn';
+import {appConfig} from './constants'
 
 class App extends Component {
   constructor(props) {
     super(props)
+    this.userSession = new UserSession({ appConfig })
   }
 
   componentDidMount() {
