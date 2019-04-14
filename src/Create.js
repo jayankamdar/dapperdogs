@@ -4,7 +4,7 @@ import './Create.css'
 import { getFile, putFile, UserSession } from 'blockstack'
 import { appConfig } from './constants'
 
-class Create extends Component {
+class CreatePage extends Component {
 
   constructor() {
 	  super()
@@ -20,8 +20,8 @@ class Create extends Component {
 	  isSubmitted: ""
 		}
 		this.userSession = new UserSession({ appConfig })
-	this.handleChange = this.handleChange.bind(this)
-	this.handleClick = this.handleClick.bind(this)
+		this.handleChange = this.handleChange.bind(this)
+		this.handleClick = this.handleClick.bind(this)
   }
   
   handleChange(e) {
@@ -94,4 +94,4 @@ class Create extends Component {
   }
 }
 
-export default Create
+export default CreatePage

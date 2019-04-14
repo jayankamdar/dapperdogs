@@ -19,7 +19,7 @@ export default class ProfilePage extends Component {
     }
 
     componentDidMount(){
-		const username = this.userSession.loadUserData.username
+		const username = this.userSession.loadUserData().username
         const options = { decrypt: false }
         getFile(`${username}.json`, options)
         .then((content) => {

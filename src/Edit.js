@@ -23,7 +23,7 @@ class Edit extends Component {
   }
   
   componentDidMount(){
-    const username = this.userSession.loadUserData.username
+    const username = this.userSession.loadUserData().username
     const options = { decrypt: false }
     getFile(`${username}.json`, options)
     .then((content) => {
@@ -50,7 +50,7 @@ class Edit extends Component {
   }
   
   handleClick(e) {
-		const username = this.userSession.loadUserData().username
+	  const username = this.userSession.loadUserData().username
     
 	  let dogInfo = {
 		  id: username,
