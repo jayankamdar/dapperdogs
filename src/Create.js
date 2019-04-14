@@ -14,7 +14,8 @@ class Create extends Component {
 	  dogBreed: "",
 	  dogWeight: "",
 	  dogPhoto: "",
-	  dogFriends: "",
+		dogFriends: "",
+		dogMisc: "",
 	  isSubmitted: ""
     }
 	this.handleChange = this.handleChange.bind(this)
@@ -35,7 +36,8 @@ class Create extends Component {
 		  age: this.state.dogAge,
 		  breed: this.state.dogBreed,
 		  weight: this.state.dogWeight,
-		  photo: this.state.dogPhoto,
+			photo: this.state.dogPhoto,
+			misc: this.state.dogMisc,
 		  friends: this.state.dogFriends
 	  }
 	  
@@ -71,7 +73,7 @@ class Create extends Component {
 		<h3>Weight</h3>
 		<input type="text" name="dogWeight" value={this.state.dogWeight} maxlength="100" onChange={this.handleChange}/><br/>
 		<h3>Miscellaneous information</h3>
-		<textarea className="bigText" name="dogBreed" value={this.state.dogPhoto} maxlength="100" onChange={this.handleChange}/><br/>
+		<textarea className="bigText" name="dogMisc" value={this.state.dogMisc} maxlength="100" onChange={this.handleChange}/><br/>
 		<h3>Photo</h3>
 		<input type="file" name="dogPhoto" value="" maxlength="100" /><br/>
 		
