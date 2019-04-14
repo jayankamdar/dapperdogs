@@ -31,7 +31,7 @@ class SignedIn extends Component {
       <div className="SignedIn">
         <NavBar username={username} signOut={this.signOut}/>
         <Switch>
-                <Redirect exact from='/' to='/profile'/>
+                <Redirect exact from='/' to={`/profile/${username}`}/>
                 <Route
                   path='/profile/:username'
                   exact
