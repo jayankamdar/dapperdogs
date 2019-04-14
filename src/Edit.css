@@ -1,0 +1,17 @@
+.bigText {
+	height: 100px;
+	width: 300px;
+}
+
+.submitBtn {
+	margin-top: 0.5in;
+	margin-bottom: 0.1in;
+	margin-left: 0.1in;
+	font-size: 30px;
+	width: 150px;
+	height: 50px;
+}
+
+h3 {
+	margin-bottom: 0.1cm;
+}

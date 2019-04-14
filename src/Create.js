@@ -29,7 +29,7 @@ class Create extends Component {
   }
   
   handleClick(e) {
-		const username = this.userSession.loadUserData.username
+		const username = this.userSession.loadUserData().username
 		this.setState({
 			id: username
 		})
