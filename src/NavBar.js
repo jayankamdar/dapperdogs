@@ -19,7 +19,7 @@ class NavBar extends Component {
       <Link className="nav-link" to="/friends">My Friends</Link>
     </li>
     <li className="nav-item">
-      <Link className="nav-link" to={`/${username}`}>View Profile</Link>
+      <Link className="nav-link" to={`/profile/${username}`}>View Profile</Link>
     </li>
     <li className="nav-item">
       <Link className="nav-link" to="/create">Create Profile</Link>

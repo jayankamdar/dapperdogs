@@ -5,7 +5,7 @@ import NavBar from './NavBar'
 import { appConfig} from './constants'
 import './SignedIn.css'
 import ProfilePage from './Profile'
-import CreatePage from './Create'
+import Create from './Create'
 import Feed from './Feed'
 import Edit from './Edit'
 
@@ -38,13 +38,13 @@ class SignedIn extends Component {
                   component={Feed}
                 />
                 <Route
-                  path='/:username'
+                  path='/profile/:username'
                   exact
                   component={ProfilePage}
                 />
           <Route
           path='/create'
-          component={CreatePage}
+          component={Create}
           />
           <Route path="/:username/edit" component={Edit}/>
         </Switch>
