@@ -3,7 +3,7 @@ export default class ProfilePage extends Component {
     constructor(props) {
         super(props)
         this.state ={
-            data: []
+            name: ''
         }
     }
 
@@ -13,6 +13,7 @@ export default class ProfilePage extends Component {
         .then((content) => {
             if(content) {
                 const data = JSON.parse(content)
+                this.setState({name: data.name})
             } else {            
                 console.log("Error retrieving user data")
                 alert("Error retrieving user data")
@@ -24,7 +25,7 @@ export default class ProfilePage extends Component {
         return (
             <React.Fragment>
                 <h1>Profile Page</h1>
-                <h2>{typeof this.state.data}</h2>
+                <h2>{this.state.name}</h2>
             </React.Fragment>
         )
     }
