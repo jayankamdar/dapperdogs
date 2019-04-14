@@ -97,6 +97,7 @@ class Create extends Component {
 				<h3>Photo</h3>
 				<input type="file" accept="image/*" name="dogPhotoOrig" value={this.state.dogPhotoOrig} maxlength="100" onChange={this.openFile}/><br/>
 				<img id='output' alt="Avatar" height="100px" width="100px"/>
+				<br></br>
 				<button
 					name="submit"
 					className="submitBtn"
