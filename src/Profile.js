@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { UserSession } from 'blockstack';
 import { appConfig } from './constants';
-import { isSignInPending, loadUserData, Person, getFile, putFile, lookupProfile } from 'blockstack'
+import { getFile } from 'blockstack';
+
 export default class ProfilePage extends Component {
     constructor(props) {
         super(props)
@@ -18,7 +19,10 @@ export default class ProfilePage extends Component {
         .then((content) => {
             if(content) {
                 const data = JSON.parse(content)
-                this.setState({name: data.name})
+                this.setState({
+                    name: data.name,
+                    
+                })
             } else {            
                 console.log("Error retrieving user data")
                 alert("Error retrieving user data")
