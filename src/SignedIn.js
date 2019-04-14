@@ -7,6 +7,7 @@ import './SignedIn.css'
 import ProfilePage from './Profile'
 import Create from './Create'
 import Edit from './Edit'
+import Friends from './Friends'
 
 class SignedIn extends Component {
 
@@ -41,6 +42,7 @@ class SignedIn extends Component {
           component={Create}
           />
           <Route path="/:username/edit" component={Edit}/>
+          <Route path="/:username/friends" component = {Friends} />
         </Switch>
       </div>
     );

@@ -13,7 +13,7 @@ class NavBar extends Component {
         <div className="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/friends">My Friends</Link>
+              <Link className="nav-link" to={`/${username}/friends`}>My Friends</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to={`/profile/${username}`}>View Profile</Link>
@@ -21,9 +21,6 @@ class NavBar extends Component {
             <li className="nav-item">
               <Link className="nav-link" to="/create">Create Profile</Link>
             </li>
-            {/* <li className="nav-item">
-          <Link className="nav-link" to="/edit">Edit Profile</Link>
-        </li> */}
           </ul>
         </div>
         <ul className="navbar-nav mr-auto">
