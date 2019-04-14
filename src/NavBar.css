@@ -29,8 +29,6 @@
   color: white;
 }
 
-
-
-.btn-primary {
+.navbar .btn-primary {
 	float: right;
 }

@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { UserSession } from 'blockstack'
 import NavBar from './NavBar'
 import Landing from './Landing'
+import CreateProfile from './CreateProfile'
 import { appConfig} from './constants'
 import './SignedIn.css'
 
@@ -77,8 +78,6 @@ class SignedIn extends Component {
                   routeProps => <Landing
                   myKingdom={false}
                   protocol={routeProps.match.params.protocol}
-                  realm={routeProps.match.params.realm}
-                  ruler={routeProps.match.params.ruler}
                   currentUsername={username}
                   {...routeProps} />
                 }
