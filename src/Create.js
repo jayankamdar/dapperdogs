@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './Create.css'
-import { isSignInPending, loadUserData, Person, getFile, putFile, lookupProfile } from 'blockstack'
+import { getFile, putFile } from 'blockstack'
 
 class Create extends Component {
 
@@ -56,7 +56,7 @@ class Create extends Component {
 	  putFile('dogs.json', JSON.stringify(dogList), options2).then(() => {})
 	  
 	  const options3 = { encrypt: false }
-		putFile(`${username}.json`, JSON.stringify(dogInfo), options3).then(() => {})
+		putFile(`${username}.json`, JSON.stringify(dogInfo), options3).then(() => {window.location='/profile'})
   }  
 
   render() {
