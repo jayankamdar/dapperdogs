@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { UserSession } from 'blockstack'
+import { UserSession, Profile } from 'blockstack'
 import NavBar from './NavBar'
 import Landing from './Landing'
 import CreateProfile from './CreateProfile'
 import { appConfig} from './constants'
 import './SignedIn.css'
+import ProfilePage from './Profile'
 
 
 class SignedIn extends Component {
@@ -74,6 +75,7 @@ class SignedIn extends Component {
       <Switch>
               <Route
                 path='/'
+                exact
                 render={
                   routeProps => <Landing
                   myKingdom={false}
@@ -81,6 +83,10 @@ class SignedIn extends Component {
                   currentUsername={username}
                   {...routeProps} />
                 }
+              />
+              <Route
+                path='/profile'
+                component={ProfilePage}
               />
       </Switch>
       </div>
