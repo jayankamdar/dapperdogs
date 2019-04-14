@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { UserSession } from 'blockstack'
 import NavBar from './NavBar'
 import { appConfig} from './constants'
@@ -7,6 +7,7 @@ import './SignedIn.css'
 import ProfilePage from './Profile'
 import CreatePage from './Create'
 import Feed from './Feed'
+import Edit from './Edit'
 
 class SignedIn extends Component {
 
@@ -30,19 +31,22 @@ class SignedIn extends Component {
       <div className="SignedIn">
         <NavBar username={username} signOut={this.signOut}/>
         <Switch>
+                <Redirect exact from='/' to='/feed'/>
                 <Route
-                  path='/'
+                  path='/feed'
                   exact
                   component={Feed}
                 />
                 <Route
-                  path='/profile'
+                  path='/:username'
+                  exact
                   component={ProfilePage}
                 />
           <Route
           path='/create'
           component={CreatePage}
           />
+          <Route path="/:username/edit" component={Edit}/>
         </Switch>
       </div>
     );
