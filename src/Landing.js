@@ -20,7 +20,7 @@ class Landing extends Component {
       <div className="Landing">
         <div className="form-signin">
           <h1 className="h1 mb-3 font-weight-normal">Dapper Dogs</h1>
-  <img src="https://i.imgur.com/IRV2oqs.png" alt="Dapper Dogs Logo" width="400px" height="400px" align="middle"></img>
+          <img src="https://i.imgur.com/IRV2oqs.png" alt="Dapper Dogs Logo" width="400px" height="400px" align="middle"></img>
           <button
             className="btn btn-lg btn-primary btn-block"
             onClick={this.signIn.bind(this)}>Sign in with Blockstack
