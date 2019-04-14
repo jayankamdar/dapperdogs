@@ -29,7 +29,7 @@ class Create extends Component {
   }
   
   handleClick(e) {
-		const username = this.userSession.loadUserData.username
+		const username = this.userSession.loadUserData().username
 		this.setState({
 			id: username
 		})
@@ -45,16 +45,11 @@ class Create extends Component {
 		  friends: this.state.dogFriends
 	  }
 	  
-	  var dogList = {}
-	  var dogL = {}
+	  var dogList = []
+	  // var dogL = []
 	  
 	  const options1 = { decrypt: false }
-	  getFile('dogs.json', options1).then((file) => {dogL = JSON.parse(file)
-		if (dogL != null) { 
-		  dogList = dogL
-		}
-		dogList[`${username}`] = this.state.name
-	  })
+		getFile('dogs.json', options1).then((file) =>	dogList = [...JSON.parse(file), {id: this.state.id}])
 	  
 	  const options2 = { encrypt: false }
 	  putFile('dogs.json', JSON.stringify(dogList), options2).then(() => {})
