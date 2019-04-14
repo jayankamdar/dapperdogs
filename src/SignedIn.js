@@ -6,7 +6,6 @@ import { appConfig} from './constants'
 import './SignedIn.css'
 import ProfilePage from './Profile'
 import Create from './Create'
-import Feed from './Feed'
 import Edit from './Edit'
 import Search from './Search'
 

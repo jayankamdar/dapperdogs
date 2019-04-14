@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { UserSession } from 'blockstack';
 import { appConfig } from './constants';
-import { getFile, putFile } from 'blockstack';
+import { getFile } from 'blockstack';
 
 export default class ProfilePage extends Component {
     constructor(props) {
@@ -13,13 +13,9 @@ export default class ProfilePage extends Component {
             weight: '',
             photo: '',
             misc: '',
-            // friends: []
-            // bark: "",
-            // barks: []
+            friends: []
         }
         this.userSession = new UserSession({ appConfig })
-        // this.handleChange= this.handleChange.bind(this)
-        // this.handleBark = this.handleBark.bind(this)
     }
 
     componentDidMount(){
@@ -43,30 +39,7 @@ export default class ProfilePage extends Component {
                 alert("Error retrieving user data")
             }
         })
-
-        // getFile('barks.json', options)
-        // .then(content => {
-        //     if (content){
-        //         this.setState({
-        //             barks: JSON.parse(content).filter(item => item.id === username)
-        //         })
-        //     }
-        // })
     }
-    
-    // handleChange(e){
-    //     this.setState({
-    //         bark: e.target.value
-    //     })
-    // }
-
-    // handleBark(e){        
-    //     e.preventDefault
-    //     var barks = [...this.state.barks, {id: this.userSession.loadUserData().username, bark: this.state.bark, date:new Date()}]
-    //     alert(barks.length)
-    //     const options = { encrypt: false }
-	//     putFile('barks.json', JSON.stringify(barks), options).then(() => {})
-    // }
 
     render(){
         var dogPhoto = new Image();
@@ -79,20 +52,8 @@ export default class ProfilePage extends Component {
                 <h2>Breed: {this.state.breed}</h2>
                 <h2>Weight: {this.state.weight}</h2>
                 <h2>Miscellaneous information: {this.state.misc}</h2>
-                <img id="dogpic" src={dogPhoto.src} height="200px" width="200px" />
+                <img id="dogpic" src={dogPhoto.src} alt="Avatar" height="200px" width="200px" />
                 <button onClick={() => window.location=`/${this.props.match.params.username}/edit`}>Edit profile</button>
-                {/* <form onSubmit={this.handleBark}>
-                    <input type="text" name="bark" value={this.state.status} maxlength="100" onChange={this.handleChange}/><br/>
-                    <button type="submit">Post bark</button>
-                </form> */}
-                {/* {
-                    this.state.barks.reverse().map(bark => 
-                        <div className="barK">
-                            <h3>{bark.date}</h3>
-                            <p>{bark.bark}</p>
-                        </div>)
-                } */}
-                {/* <h1>{this.state.barks.length}</h1> */}
             </React.Fragment>
         )
     }

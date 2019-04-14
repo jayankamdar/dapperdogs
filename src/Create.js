@@ -63,7 +63,6 @@ class Create extends Component {
 	}  
 	
 	openFile = function(event) {
-		let self = this;
 		var input = event.target;
 	
 		var reader = new FileReader();
@@ -97,7 +96,7 @@ class Create extends Component {
 				<textarea className="bigText" name="dogMisc" value={this.state.dogMisc} maxlength="100" onChange={this.handleChange} /><br />
 				<h3>Photo</h3>
 				<input type="file" accept="image/*" name="dogPhotoOrig" value={this.state.dogPhotoOrig} maxlength="100" onChange={this.openFile}/><br/>
-				<img id='output' height="100px" width="100px"/>
+				<img id='output' alt="Avatar" height="100px" width="100px"/>
 				<button
 					name="submit"
 					className="submitBtn"
