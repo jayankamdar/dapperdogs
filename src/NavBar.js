@@ -22,7 +22,10 @@ class NavBar extends Component {
       <Link className="nav-link" to="/profile">View Profile</Link>
     </li>
     <li className="nav-item">
-      <Link className="nav-link" to="/others">Create/Edit Profile</Link>
+      <Link className="nav-link" to="/create">Create Profile</Link>
+    </li>
+    <li className="nav-item">
+      <Link className="nav-link" to="/edit">Edit Profile</Link>
     </li>
   </ul>
 </div>
