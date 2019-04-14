@@ -60,7 +60,7 @@ class Create extends Component {
 	  putFile('dogs.json', JSON.stringify(dogList), options2).then(() => {})
 	  
 	  const options3 = { encrypt: false }
-		putFile(`${username}.json`, JSON.stringify(dogInfo), options3).then(() => {window.location='/profile'})
+		putFile(`${username}.json`, JSON.stringify(dogInfo), options3).then(() => {window.location=`/profile/${username}`})
   }  
 
   render() {
