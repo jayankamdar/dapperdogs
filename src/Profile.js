@@ -19,7 +19,7 @@ export default class ProfilePage extends Component {
     }
 
     componentDidMount(){
-		const username = this.props.username
+		const username = this.userSession.loadUserData.username
         const options = { decrypt: false }
         getFile(`${username}.json`, options)
         .then((content) => {
@@ -44,12 +44,12 @@ export default class ProfilePage extends Component {
     render(){
         return (
             <React.Fragment>
-                <h1>Profile Page</h1>
-                <h2>Name: {this.state.name}</h2>
+                <h1>Name: {this.state.name}</h1>
                 <h2>Age: {this.state.age}</h2>
                 <h2>Breed: {this.state.breed}</h2>
                 <h2>Weight: {this.state.weight}</h2>
                 <h2>Miscellaneous information: {this.state.misc}</h2>
+                <button onClick={() => window.location=`/${this.props.match.params.username}/edit`}>Edit profile</button>
             </React.Fragment>
         )
     }
